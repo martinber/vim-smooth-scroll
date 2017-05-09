@@ -1,10 +1,9 @@
 " ==============================================================================
 " File: smooth_scroll.vim
-" Author: Terry Ma
+" Author: Terry Ma / Martin Bernardi
 " Description: Scroll the screen smoothly to retain better context. Useful for
 " replacing Vim's default scrolling behavior with CTRL-D, CTRL-U, CTRL-B, and
-" CTRL-F
-" Last Modified: April 04, 2013
+" CTRL-F. Fork of Terry Ma's plugin, this one only uses j and k for scrolling.
 " ==============================================================================
 
 let s:save_cpo = &cpo
@@ -40,9 +39,9 @@ function! s:smooth_scroll(dir, dist, duration, speed)
   for i in range(a:dist/a:speed)
     let start = reltime()
     if a:dir ==# 'd'
-      exec "normal! ".a:speed."\<C-e>".a:speed."j"
+      exec "normal! ".a:speed."j"
     else
-      exec "normal! ".a:speed."\<C-y>".a:speed."k"
+      exec "normal! ".a:speed."k"
     endif
     redraw
     let elapsed = s:get_ms_since(start)
