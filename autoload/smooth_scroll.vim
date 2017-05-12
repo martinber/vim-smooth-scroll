@@ -43,6 +43,8 @@ function! s:smooth_scroll(dir, dist, duration, speed)
     else
       exec "normal! ".a:speed."k"
     endif
+    " Insert char to force screen update
+    normal i
     redraw
     let elapsed = s:get_ms_since(start)
     let snooze = float2nr(a:duration-elapsed)
